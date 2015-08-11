@@ -17,7 +17,7 @@ public class TestProperties {
     * Initialize static the properties.
     */
     static {
-        seedNode = System.getProperty("seedNode", "127.0.0.1");
+        seedNode = System.getProperty("seedNode", "172.23.107.174");
         bucket = System.getProperty("bucket", "default");
         password = System.getProperty("password", "");
         adminName = System.getProperty("adminName", "Administrator");
@@ -25,7 +25,7 @@ public class TestProperties {
         queryEnabled = Boolean.parseBoolean(System.getProperty("queryEnabled", "false"));
         
         cbftOutput = "cbftTestOutput.txt";
-        cbftPath ="./cbft-full.linux.amd64 -bindHttp=0.0.0.0:8095 -server=http://Administrator:password@172.23.107.174:8091";
+        cbftPath ="./cbft-full.linux.amd64 -bindHttp=0.0.0.0:8095 -server=http://Administrator:password@172.23.107.174:8091 &> /dev/null &";
     }
 
     /**

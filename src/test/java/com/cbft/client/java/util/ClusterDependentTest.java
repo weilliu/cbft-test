@@ -75,7 +75,7 @@ public class ClusterDependentTest {
         bucketManager.flush();
         
         //remove it after cbft integrate it with watson
-        Process process = Runtime.getRuntime().exec(cbftPath);
+        //Process process = Runtime.getRuntime().exec(cbftPath);
     }
 
     @AfterClass

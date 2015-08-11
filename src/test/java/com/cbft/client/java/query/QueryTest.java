@@ -27,7 +27,7 @@ public class QueryTest extends ClusterDependentTest {
     @Test
     public void shouldGetIndexCount() {
         
-        String recent = "http://localhost:8095/api/index/default-index/count";
+        String recent = "http://localhost:8095/api/index/beer-index/count";
         try {
             assertEquals(200,cbftRest.get_request(recent));
         } 
