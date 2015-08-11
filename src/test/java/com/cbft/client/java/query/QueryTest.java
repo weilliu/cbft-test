@@ -24,12 +24,8 @@ public class QueryTest extends ClusterDependentTest {
         }
     }
     
-    /**
-     * search: all recent tweets done in Portuguese, near Maracanã soccer stadium in Rio de Janeiro 
-     * test:Recent_Language_Geolocalization
-     */
     @Test
-    public void test2() {
+    public void shouldGetIndexCount() {
         
         String recent = "http://localhost:8095/api/index/default-index/count";
         try {
