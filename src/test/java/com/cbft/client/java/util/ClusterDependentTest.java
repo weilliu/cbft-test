@@ -77,18 +77,18 @@ public class ClusterDependentTest {
         bucketManager.flush();
         
         //remove it after cbft integrate it with watson
-        ProcessBuilder builder = new ProcessBuilder("sh", "-c", cbftPath);
-        builder.redirectOutput(new File(cbftOutput));
-        builder.redirectError(new File("cbftTestError.txt"));
-        Process p = builder.start();
-
-        if (p.waitFor() == 0){
-            System.out.println("cbft daemon created");
-            //wait 2 seconds for cbft to full boot
-            Thread.sleep(2000);
-        }else{
-            System.err.println("cbft fail to start");
-        }
+//        ProcessBuilder builder = new ProcessBuilder("sh", "-c", cbftPath);
+//        builder.redirectOutput(new File(cbftOutput));
+//        builder.redirectError(new File("cbftTestError.txt"));
+//        Process p = builder.inheritIO().start();
+//
+//        if (p.waitFor() == 0){
+//            System.out.println("cbft daemon created");
+//            //wait 2 seconds for cbft to full boot
+//            Thread.sleep(2000);
+//        }else{
+//            System.err.println("cbft fail to start");
+//        }
     }
 
     @AfterClass

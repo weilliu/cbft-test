@@ -6,8 +6,10 @@ import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.methods.HttpPut;
 import org.apache.http.impl.client.DefaultHttpClient;
 
 public class CbftRestCall {
@@ -36,7 +38,32 @@ public class CbftRestCall {
         System.out.println(IOUtils.toString(httpResponse.getEntity().getContent()));
         
         int statusCode = httpResponse.getStatusLine().getStatusCode();
+ 
+        return statusCode;  
+    }
+    
+    public int delete_request(String URI) throws IOException
+    {        
+        HttpDelete httpDelete = new HttpDelete(URI);   
+        HttpResponse httpResponse = httpClient.execute(httpDelete);
         
+        System.out.println("Delete API:"+URI+"\n =========== Return result ========");
+        System.out.println(IOUtils.toString(httpResponse.getEntity().getContent()));
+        int statusCode = httpResponse.getStatusLine().getStatusCode();
+ 
+        return statusCode;  
+    }
+    
+    public int put_request(String URI) throws IOException
+    {        
+        HttpPut httpPut = new HttpPut(URI);   
+        HttpResponse httpResponse = httpClient.execute(httpPut);
+        
+        System.out.println("Put API:"+URI+"\n =========== Return result ========");
+        System.out.println(IOUtils.toString(httpResponse.getEntity().getContent()));
+        
+        int statusCode = httpResponse.getStatusLine().getStatusCode();
+ 
         return statusCode;  
     }
 }
