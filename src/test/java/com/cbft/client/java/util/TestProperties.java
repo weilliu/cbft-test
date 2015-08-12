@@ -25,7 +25,7 @@ public class TestProperties {
         queryEnabled = Boolean.parseBoolean(System.getProperty("queryEnabled", "false"));
         
         cbftOutput = "cbftTestOutput.txt";
-        cbftPath ="./cbft-full.linux.amd64 -bindHttp=0.0.0.0:8095 -server=http://Administrator:password@172.23.107.174:8091 &> /dev/null &";
+        cbftPath ="./cbft-full.linux.amd64 -bindHttp=0.0.0.0:8095 -server=http://Administrator:password@172.23.107.174:8091";
     }
 
     /**
