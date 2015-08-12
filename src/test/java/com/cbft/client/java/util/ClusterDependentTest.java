@@ -1,6 +1,8 @@
 package com.cbft.client.java.util;
 
 
+import java.io.File;
+
 import com.couchbase.client.deps.io.netty.util.ResourceLeakDetector;
 import com.couchbase.client.java.bucket.BucketManager;
 import com.couchbase.client.java.env.CouchbaseEnvironment;
@@ -8,6 +10,7 @@ import com.couchbase.client.java.env.DefaultCouchbaseEnvironment;
 import com.couchbase.client.java.repository.Repository;
 import com.couchbase.client.java.util.features.CouchbaseFeature;
 import com.couchbase.client.java.util.features.Version;
+
 import org.junit.AfterClass;
 import org.junit.Assume;
 import org.junit.BeforeClass;
@@ -18,7 +21,6 @@ import com.couchbase.client.java.CouchbaseCluster;
 import com.couchbase.client.java.bucket.BucketType;
 import com.couchbase.client.java.cluster.ClusterManager;
 import com.couchbase.client.java.cluster.DefaultBucketSettings;
-
 import com.cbft.client.java.CbftServices;
 
 /**
@@ -75,7 +77,10 @@ public class ClusterDependentTest {
         bucketManager.flush();
         
         //remove it after cbft integrate it with watson
-        //Process process = Runtime.getRuntime().exec(cbftPath);
+        ProcessBuilder builder = new ProcessBuilder("sh", "-c", cbftPath);
+        builder.redirectOutput(new File(cbftOutput));
+        builder.redirectError(new File("cbftTestError.txt"));
+        Process p = builder.start();
     }
 
     @AfterClass
