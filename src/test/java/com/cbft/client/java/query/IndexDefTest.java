@@ -60,7 +60,7 @@ public class IndexDefTest extends ClusterDependentTest {
             e.printStackTrace();
         }
     }
-    @Ignore
+
     @Test
     public void shouldDeleteIndex() {
         

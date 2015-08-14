@@ -10,5 +10,32 @@ import java.io.IOException;
 import org.junit.Test;
 
 public class QueryTest extends ClusterDependentTest {
+    
+    CbftRestCall cbftRest = new CbftRestCall();
+    
+    @Test
+    public void shouldGetIndexMetrics(){
+        String indexDocCounts = "http://localhost:8095//api/index/beer-index/count";
+
+        try {
+            assertEquals(200,cbftRest.get_request(indexDocCounts));
+        } 
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    @Test
+    public void shouldQueryIndex(){
+        String queryDocs = "http://localhost:8095//api/index/beer-index/query --data '{\"query\": {\"query\": \"beer\" , \"boost\" : 1}}' --header 'Content-Type: application/json' --header 'Accept: application/json";
+
+        try {
+            assertEquals(200,cbftRest.post_request(queryDocs));
+        } 
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        
+    }
 
 }
