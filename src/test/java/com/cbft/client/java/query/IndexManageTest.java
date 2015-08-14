@@ -10,7 +10,7 @@ import org.junit.Test;
 import com.cbft.client.java.CbftRestCall;
 import com.cbft.client.java.util.ClusterDependentTest;
 
-public class IndexManageTest extends ClusterDependentTest {
+public class IndexManageTest {
     
     CbftRestCall cbftRest = new CbftRestCall();
     
@@ -45,8 +45,8 @@ public class IndexManageTest extends ClusterDependentTest {
     @Test
     public void shouldDisallowQuery() {
         
-        String disallowQuery = "http://localhost:8095//api/index/beer-index/queryControl/disallow";
-        String allowQuery = "http://localhost:8095//api/index/beer-index/queryControl/allow";
+        String disallowQuery = "http://localhost:8095/api/index/beer-index/queryControl/disallow";
+        String allowQuery = "http://localhost:8095/api/index/beer-index/queryControl/allow";
         try {
             assertEquals(200,cbftRest.get_request(disallowQuery));
             assertEquals(200,cbftRest.get_request(allowQuery));

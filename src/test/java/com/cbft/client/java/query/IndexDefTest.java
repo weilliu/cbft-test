@@ -10,7 +10,7 @@ import org.junit.Test;
 import com.cbft.client.java.CbftRestCall;
 import com.cbft.client.java.util.ClusterDependentTest;
 
-public class IndexDefTest extends ClusterDependentTest {
+public class IndexDefTest {
     
     CbftRestCall cbftRest = new CbftRestCall();
     
@@ -54,7 +54,7 @@ public class IndexDefTest extends ClusterDependentTest {
         
         String createIndex = "http://localhost:8095/api/index/default-index?indexType=bleve&sourceType=couchbase&sourceName=http://default@172.23.107.174:8091/pools/default/buckets/default";
         try {
-            assertEquals(200,cbftRest.put_request(createIndex));
+            assertEquals(200,cbftRest.post_request(createIndex));
         } 
         catch (IOException e) {
             e.printStackTrace();
@@ -66,7 +66,7 @@ public class IndexDefTest extends ClusterDependentTest {
         
         String deleteIndex = "http://localhost:8095/api/index/another-index";
         try {
-            assertEquals(200,cbftRest.post_request(deleteIndex));
+            assertEquals(200, cbftRest.delete_request(deleteIndex));
         } 
         catch (IOException e) {
             e.printStackTrace();

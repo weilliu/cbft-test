@@ -15,7 +15,7 @@ public class QueryTest extends ClusterDependentTest {
     
     @Test
     public void shouldGetIndexMetrics(){
-        String indexDocCounts = "http://localhost:8095//api/index/beer-index/count";
+        String indexDocCounts = "http://localhost:8095/api/index/beer-index/count";
 
         try {
             assertEquals(200,cbftRest.get_request(indexDocCounts));
@@ -27,7 +27,7 @@ public class QueryTest extends ClusterDependentTest {
     
     @Test
     public void shouldQueryIndex(){
-        String queryDocs = "http://localhost:8095//api/index/beer-index/query --data '{\"query\": {\"query\": \"beer\" , \"boost\" : 1}}' --header 'Content-Type: application/json' --header 'Accept: application/json";
+        String queryDocs = "http://localhost:8095/api/index/beer-index/query --data '{\"query\": {\"query\": \"beer\" , \"boost\" : 1}}' --header 'Content-Type: application/json' --header 'Accept: application/json'";
 
         try {
             assertEquals(200,cbftRest.post_request(queryDocs));
