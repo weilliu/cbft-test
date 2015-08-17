@@ -47,8 +47,6 @@ public class ClusterDependentTest {
     private static Repository repository;
     
     private static CbftServices cbft;
-    private static String cbftPath = TestProperties.cbftPath();
-    private static String cbftOutput = TestProperties.cbftOutput();
 
     @BeforeClass
     public static void connect() throws Exception {

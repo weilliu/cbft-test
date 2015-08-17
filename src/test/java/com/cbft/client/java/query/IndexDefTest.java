@@ -9,15 +9,18 @@ import org.junit.Test;
 
 import com.cbft.client.java.CbftRestCall;
 import com.cbft.client.java.util.ClusterDependentTest;
+import com.cbft.client.java.util.TestProperties;
 
 public class IndexDefTest {
     
     CbftRestCall cbftRest = new CbftRestCall();
+    private String cbftNode = TestProperties.cbftNode();
+    
     
     @Test
     public void shouldGetAllIndexDefinition() {
         
-        String allIndexDef = "http://localhost:8095/api/index";
+        String allIndexDef = "http://"+cbftNode+":8095/api/index";
         try {
             assertEquals(200,cbftRest.get_request(allIndexDef));
         } 
@@ -29,7 +32,7 @@ public class IndexDefTest {
     @Test
     public void shouldGetIndexDefinition() {
         
-        String allIndexDef = "http://localhost:8095/api/index/beer-index";
+        String allIndexDef = "http://"+cbftNode+":8095/api/index/beer-index";
         try {
             assertEquals(200,cbftRest.get_request(allIndexDef));
         } 
@@ -40,7 +43,7 @@ public class IndexDefTest {
     @Test
     public void shouldGetIndexCount() {
         
-        String indexCount = "http://localhost:8095/api/index/beer-index/count";
+        String indexCount = "http://"+cbftNode+"+:8095/api/index/beer-index/count";
         try {
             assertEquals(200,cbftRest.get_request(indexCount));
         } 
@@ -52,9 +55,18 @@ public class IndexDefTest {
     @Test
     public void shouldCreateIndex() {
         
-        String createIndex = "http://localhost:8095/api/index/default-index?indexType=bleve&sourceType=couchbase&sourceName=http://default@172.23.107.174:8091/pools/default/buckets/default";
+        String createIndex = "http://"+cbftNode+"+:8095/api/index/default-index?indexType=bleve&sourceType=couchbase&sourceName=http://default@172.23.107.174:8091/pools/default/buckets/default";
         try {
-            assertEquals(200,cbftRest.post_request(createIndex , null, null));
+            assertEquals(200,cbftRest.put_request(createIndex));
+        } 
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        
+        //deleteIndex after create
+        String deleteIndex = "http://"+cbftNode+"+:8095/api/index/default-index";
+        try {
+            assertEquals(200, cbftRest.delete_request(deleteIndex));
         } 
         catch (IOException e) {
             e.printStackTrace();
@@ -64,7 +76,16 @@ public class IndexDefTest {
     @Test
     public void shouldDeleteIndex() {
         
-        String deleteIndex = "http://localhost:8095/api/index/another-index";
+        //create index before delete
+        String createIndex = "http://"+cbftNode+"+:8095/api/index/another-index?indexType=alias&sourceType=nil";
+        try {
+            assertEquals(200,cbftRest.put_request(createIndex));
+        } 
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        
+        String deleteIndex = "http://"+cbftNode+"+:8095/api/index/another-index";
         try {
             assertEquals(200, cbftRest.delete_request(deleteIndex));
         } 

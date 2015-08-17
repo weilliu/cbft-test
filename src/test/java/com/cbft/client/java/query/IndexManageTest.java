@@ -9,16 +9,18 @@ import org.junit.Test;
 
 import com.cbft.client.java.CbftRestCall;
 import com.cbft.client.java.util.ClusterDependentTest;
+import com.cbft.client.java.util.TestProperties;
 
 public class IndexManageTest {
     
     CbftRestCall cbftRest = new CbftRestCall();
+    private String cbftNode = TestProperties.cbftNode();
     
     @Test
     public void shouldPausesIndexUpdate() {
         
-        String pauseIndex = "http://localhost:8095/api/index/beer-index/ingestControl/pause";
-        String resumeIndex = "http://localhost:8095/api/index/beer-index/ingestControl/resume";
+        String pauseIndex = "http://"+cbftNode+":8095/api/index/beer-index/ingestControl/pause";
+        String resumeIndex = "http://"+cbftNode+":8095/api/index/beer-index/ingestControl/resume";
         try {
             assertEquals(200,cbftRest.post_request(pauseIndex, null, null));
             assertEquals(200,cbftRest.post_request(resumeIndex, null, null));
@@ -31,8 +33,8 @@ public class IndexManageTest {
     @Test
     public void shouldFreezePlanIndex() {
         
-        String indexfreezeplan = "http://localhost:8095/api/index/beer-index/planFreezeControl/freeze";
-        String indexUnfreezeplan = "http://localhost:8095/api/index/beer-index/planFreezeControl/unfreeze";
+        String indexfreezeplan = "http://"+cbftNode+":8095/api/index/beer-index/planFreezeControl/freeze";
+        String indexUnfreezeplan = "http://"+cbftNode+":8095/api/index/beer-index/planFreezeControl/unfreeze";
         try {
             assertEquals(200,cbftRest.post_request(indexfreezeplan, null, null));
             assertEquals(200,cbftRest.post_request(indexUnfreezeplan, null, null));
@@ -45,8 +47,8 @@ public class IndexManageTest {
     @Test
     public void shouldDisallowQuery() {
         
-        String disallowQuery = "http://localhost:8095/api/index/beer-index/queryControl/disallow";
-        String allowQuery = "http://localhost:8095/api/index/beer-index/queryControl/allow";
+        String disallowQuery = "http://"+cbftNode+":8095/api/index/beer-index/queryControl/disallow";
+        String allowQuery = "http://"+cbftNode+":8095/api/index/beer-index/queryControl/allow";
         try {
             assertEquals(200,cbftRest.get_request(disallowQuery));
             assertEquals(200,cbftRest.get_request(allowQuery));
@@ -58,7 +60,7 @@ public class IndexManageTest {
     
     @Test
     public void shouldGetIndexMetrics(){
-        String getIndexStats = "http://localhost:8095/api/stats";
+        String getIndexStats = "http://"+cbftNode+":8095/api/stats";
 
         try {
             assertEquals(200,cbftRest.get_request(getIndexStats));
@@ -70,7 +72,7 @@ public class IndexManageTest {
     
     @Test
     public void shouldReturnIndex(){
-        String getSingleIndexStats = "http://localhost:8095/api/stats/index/beer-index";
+        String getSingleIndexStats = "http://"+cbftNode+":8095/api/stats/index/beer-index";
 
         try {
             assertEquals(200,cbftRest.get_request(getSingleIndexStats));

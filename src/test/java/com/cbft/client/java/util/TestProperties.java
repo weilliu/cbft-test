@@ -10,7 +10,7 @@ public class TestProperties {
     private static String adminPassword;
     private static boolean queryEnabled;
     
-    private static String cbftOutput;
+    private static String cbftNode;
     private static String cbftPath;
 
     /**
@@ -24,7 +24,7 @@ public class TestProperties {
         adminPassword = System.getProperty("adminPassword", "password");
         queryEnabled = Boolean.parseBoolean(System.getProperty("queryEnabled", "false"));
         
-        cbftOutput = "cbftTestOutput.txt";
+        cbftNode = "localhost";
         cbftPath ="./cbft-full.linux.amd64 -bindHttp=0.0.0.0:8095 -server=http://Administrator:password@172.23.107.174:8091";
     }
 
@@ -82,11 +82,8 @@ public class TestProperties {
         return queryEnabled;
     }
     
-    public static String cbftPath(){
-        return cbftPath;
+    public static String cbftNode() {
+        return cbftNode;
     }
 
-    public static String cbftOutput(){
-        return cbftOutput;
-    }
 }
