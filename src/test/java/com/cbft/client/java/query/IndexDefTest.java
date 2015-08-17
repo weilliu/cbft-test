@@ -54,7 +54,7 @@ public class IndexDefTest {
         
         String createIndex = "http://localhost:8095/api/index/default-index?indexType=bleve&sourceType=couchbase&sourceName=http://default@172.23.107.174:8091/pools/default/buckets/default";
         try {
-            assertEquals(200,cbftRest.post_request(createIndex));
+            assertEquals(200,cbftRest.post_request(createIndex , null, null));
         } 
         catch (IOException e) {
             e.printStackTrace();

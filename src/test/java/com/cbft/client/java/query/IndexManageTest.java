@@ -20,8 +20,8 @@ public class IndexManageTest {
         String pauseIndex = "http://localhost:8095/api/index/beer-index/ingestControl/pause";
         String resumeIndex = "http://localhost:8095/api/index/beer-index/ingestControl/resume";
         try {
-            assertEquals(200,cbftRest.post_request(pauseIndex));
-            assertEquals(200,cbftRest.post_request(resumeIndex));
+            assertEquals(200,cbftRest.post_request(pauseIndex, null, null));
+            assertEquals(200,cbftRest.post_request(resumeIndex, null, null));
         } 
         catch ( IOException e) {
             e.printStackTrace();
@@ -34,8 +34,8 @@ public class IndexManageTest {
         String indexfreezeplan = "http://localhost:8095/api/index/beer-index/planFreezeControl/freeze";
         String indexUnfreezeplan = "http://localhost:8095/api/index/beer-index/planFreezeControl/unfreeze";
         try {
-            assertEquals(200,cbftRest.post_request(indexfreezeplan));
-            assertEquals(200,cbftRest.post_request(indexUnfreezeplan));
+            assertEquals(200,cbftRest.post_request(indexfreezeplan, null, null));
+            assertEquals(200,cbftRest.post_request(indexUnfreezeplan, null, null));
         } 
         catch ( IOException e) {
             e.printStackTrace();

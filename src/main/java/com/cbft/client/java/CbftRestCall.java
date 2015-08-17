@@ -10,6 +10,7 @@ import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpPut;
+import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 
 public class CbftRestCall {
@@ -29,9 +30,18 @@ public class CbftRestCall {
         return statusCode;  
     }
     
-    public int post_request(String URI) throws IOException
+    public int post_request(String URI, String body, String contentType) throws IOException
     {        
         HttpPost httpPost = new HttpPost(URI);   
+        
+        if (body != null){
+            StringEntity userEntity = new StringEntity(body);
+            httpPost.setEntity(userEntity);
+        }
+        if (contentType != null){
+            httpPost.addHeader("content-type", contentType);
+        }
+        
         HttpResponse httpResponse = httpClient.execute(httpPost);
         
         System.out.println("Post API:"+URI+"\n =========== Return result ========");
@@ -41,7 +51,7 @@ public class CbftRestCall {
  
         return statusCode;  
     }
-    
+        
     public int delete_request(String URI) throws IOException
     {        
         HttpDelete httpDelete = new HttpDelete(URI);   

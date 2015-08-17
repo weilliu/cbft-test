@@ -27,10 +27,12 @@ public class QueryTest extends ClusterDependentTest {
     
     @Test
     public void shouldQueryIndex(){
-        String queryDocs = "http://localhost:8095/api/index/beer-index/query --data '{\"query\": {\"query\": \"beer\" , \"boost\" : 1}}' --header 'Content-Type: application/json' --header 'Accept: application/json'";
+        String queryDocs = "http://localhost:8095/api/index/beer-index/query";
+        String body = "{\"query\": {\"query\": \"beer\" , \"boost\" : 1}}";
+        String contentType = "application/json";
 
         try {
-            assertEquals(200,cbftRest.post_request(queryDocs));
+            assertEquals(200,cbftRest.post_request(queryDocs, body,contentType));
         } 
         catch (IOException e) {
             e.printStackTrace();
