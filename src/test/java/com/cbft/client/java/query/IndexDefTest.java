@@ -43,7 +43,7 @@ public class IndexDefTest {
     @Test
     public void shouldGetIndexCount() {
         
-        String indexCount = "http://"+cbftNode+"+:8095/api/index/beer-index/count";
+        String indexCount = "http://"+cbftNode+":8095/api/index/beer-index/count";
         try {
             assertEquals(200,cbftRest.get_request(indexCount));
         } 
@@ -55,7 +55,7 @@ public class IndexDefTest {
     @Test
     public void shouldCreateIndex() {
         
-        String createIndex = "http://"+cbftNode+"+:8095/api/index/default-index?indexType=bleve&sourceType=couchbase&sourceName=http://default@172.23.107.174:8091/pools/default/buckets/default";
+        String createIndex = "http://"+cbftNode+":8095/api/index/default-index?indexType=bleve&sourceType=couchbase&sourceName=http://default@172.23.107.174:8091/pools/default/buckets/default";
         try {
             assertEquals(200,cbftRest.put_request(createIndex));
         } 
@@ -64,7 +64,7 @@ public class IndexDefTest {
         }
         
         //deleteIndex after create
-        String deleteIndex = "http://"+cbftNode+"+:8095/api/index/default-index";
+        String deleteIndex = "http://"+cbftNode+":8095/api/index/default-index";
         try {
             assertEquals(200, cbftRest.delete_request(deleteIndex));
         } 
@@ -77,7 +77,7 @@ public class IndexDefTest {
     public void shouldDeleteIndex() {
         
         //create index before delete
-        String createIndex = "http://"+cbftNode+"+:8095/api/index/another-index?indexType=alias&sourceType=nil";
+        String createIndex = "http://"+cbftNode+":8095/api/index/another-index?indexType=alias&sourceType=nil";
         try {
             assertEquals(200,cbftRest.put_request(createIndex));
         } 
@@ -85,7 +85,7 @@ public class IndexDefTest {
             e.printStackTrace();
         }
         
-        String deleteIndex = "http://"+cbftNode+"+:8095/api/index/another-index";
+        String deleteIndex = "http://"+cbftNode+":8095/api/index/another-index";
         try {
             assertEquals(200, cbftRest.delete_request(deleteIndex));
         } 
