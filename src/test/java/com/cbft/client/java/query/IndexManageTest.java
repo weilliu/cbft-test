@@ -58,7 +58,7 @@ public class IndexManageTest {
     
     @Test
     public void shouldGetIndexMetrics(){
-        String getIndexStats = "http://localhost:8095//api/stats";
+        String getIndexStats = "http://localhost:8095/api/stats";
 
         try {
             assertEquals(200,cbftRest.get_request(getIndexStats));
@@ -70,7 +70,7 @@ public class IndexManageTest {
     
     @Test
     public void shouldReturnIndex(){
-        String getSingleIndexStats = "http://localhost:8095//api/stats/index/beer-index";
+        String getSingleIndexStats = "http://localhost:8095/api/stats/index/beer-index";
 
         try {
             assertEquals(200,cbftRest.get_request(getSingleIndexStats));

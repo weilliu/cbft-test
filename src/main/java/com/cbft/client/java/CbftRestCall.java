@@ -13,17 +13,20 @@ import org.apache.http.client.methods.HttpPut;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 
+import java.util.logging.*;
+
 public class CbftRestCall {
     
     static HttpClient httpClient = new DefaultHttpClient();
-
+    private final Logger fLogger=Logger.getLogger(this.getClass().getPackage().getName());
+    
     public int get_request(String URI) throws ClientProtocolException, IOException
     {   
         HttpGet httpGet = new HttpGet(URI);
         HttpResponse httpResponse = httpClient.execute(httpGet);
         
-        System.out.println("Get API:"+URI+"\n =========== Return result ========");
-        System.out.println(IOUtils.toString(httpResponse.getEntity().getContent())+"\n\n");
+        fLogger.log(Level.INFO, "Get API:"+URI);
+        fLogger.log(Level.FINE, "\n =========== Return result ========\n"+ IOUtils.toString(httpResponse.getEntity().getContent())+"\n\n");
         
         int statusCode = httpResponse.getStatusLine().getStatusCode();
         
@@ -44,8 +47,8 @@ public class CbftRestCall {
         
         HttpResponse httpResponse = httpClient.execute(httpPost);
         
-        System.out.println("Post API:"+URI+"\n =========== Return result ========");
-        System.out.println(IOUtils.toString(httpResponse.getEntity().getContent()));
+        fLogger.log(Level.INFO, "Post API:"+URI);
+        fLogger.log(Level.FINE, "\n =========== Return result ========\n"+ IOUtils.toString(httpResponse.getEntity().getContent())+"\n\n");
         
         int statusCode = httpResponse.getStatusLine().getStatusCode();
  
@@ -57,8 +60,9 @@ public class CbftRestCall {
         HttpDelete httpDelete = new HttpDelete(URI);   
         HttpResponse httpResponse = httpClient.execute(httpDelete);
         
-        System.out.println("Delete API:"+URI+"\n =========== Return result ========");
-        System.out.println(IOUtils.toString(httpResponse.getEntity().getContent()));
+        fLogger.log(Level.INFO, "Delete API:"+URI);
+        fLogger.log(Level.FINE, "\n =========== Return result ========\n"+ IOUtils.toString(httpResponse.getEntity().getContent())+"\n\n");
+        
         int statusCode = httpResponse.getStatusLine().getStatusCode();
  
         return statusCode;  
@@ -69,8 +73,8 @@ public class CbftRestCall {
         HttpPut httpPut = new HttpPut(URI);   
         HttpResponse httpResponse = httpClient.execute(httpPut);
         
-        System.out.println("Put API:"+URI+"\n =========== Return result ========");
-        System.out.println(IOUtils.toString(httpResponse.getEntity().getContent()));
+        fLogger.log(Level.INFO, "Put API:"+URI);
+        fLogger.log(Level.FINE, "\n =========== Return result ========\n"+ IOUtils.toString(httpResponse.getEntity().getContent())+"\n\n");
         
         int statusCode = httpResponse.getStatusLine().getStatusCode();
  
