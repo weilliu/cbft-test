@@ -66,12 +66,12 @@ public class IndexDefTest {
         //deleteIndex after create
         String deleteIndex = "http://"+cbftNode+":8095/api/index/default-index";
         try {
-            assertEquals(200, cbftRest.delete_request(deleteIndex));
-        } 
-        catch (IOException e) {
+            cbftRest.delete_request(deleteIndex);
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
 
     @Test
     public void shouldDeleteIndex() {
@@ -79,7 +79,7 @@ public class IndexDefTest {
         //create index before delete
         String createIndex = "http://"+cbftNode+":8095/api/index/another-index?indexType=alias&sourceType=nil";
         try {
-            assertEquals(200,cbftRest.put_request(createIndex));
+            cbftRest.put_request(createIndex);
         } 
         catch (IOException e) {
             e.printStackTrace();
