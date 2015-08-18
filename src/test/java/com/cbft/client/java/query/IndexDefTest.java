@@ -77,7 +77,7 @@ public class IndexDefTest {
     public void shouldDeleteIndex() {
         
         //create index before delete
-        String createIndex = "http://"+cbftNode+":8095/api/index/another-index?indexType=alias&sourceType=nil";
+        String createIndex = "http://"+cbftNode+":8095/api/index/another-index?indexType=blackhole&sourceType=nil";
         try {
             cbftRest.put_request(createIndex);
         } 

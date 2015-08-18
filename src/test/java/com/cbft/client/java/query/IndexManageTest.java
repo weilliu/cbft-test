@@ -31,7 +31,7 @@ public class IndexManageTest {
     }
     
     @Test
-    public void shouldFreezePlanIndex() {
+    public void shouldFreezePlanIndex(){
         
         String indexfreezeplan = "http://"+cbftNode+":8095/api/index/beer-index/planFreezeControl/freeze";
         String indexUnfreezeplan = "http://"+cbftNode+":8095/api/index/beer-index/planFreezeControl/unfreeze";
@@ -50,8 +50,8 @@ public class IndexManageTest {
         String disallowQuery = "http://"+cbftNode+":8095/api/index/beer-index/queryControl/disallow";
         String allowQuery = "http://"+cbftNode+":8095/api/index/beer-index/queryControl/allow";
         try {
-            assertEquals(200,cbftRest.get_request(disallowQuery));
-            assertEquals(200,cbftRest.get_request(allowQuery));
+            assertEquals(200,cbftRest.post_request(disallowQuery, null, null));
+            assertEquals(200,cbftRest.post_request(allowQuery, null, null));
         } 
         catch (IOException e) {
             e.printStackTrace();
