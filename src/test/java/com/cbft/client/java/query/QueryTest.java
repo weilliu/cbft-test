@@ -29,6 +29,7 @@ public class QueryTest extends ClusterDependentTest {
     
     @Test
     public void shouldQueryIndex(){
+        
         String queryDocs = "http://"+cbftNode+":8095/api/index/beer-index/query";
         String body = "{\"query\": {\"query\": \"beer\" , \"boost\" : 1}}";
         String contentType = "application/json";

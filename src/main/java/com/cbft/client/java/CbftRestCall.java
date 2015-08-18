@@ -18,17 +18,38 @@ import java.util.logging.*;
 public class CbftRestCall {
     
     static HttpClient httpClient = new DefaultHttpClient();
-    private final Logger fLogger=Logger.getLogger(this.getClass().getPackage().getName());
+    //private final Logger fLogger=Logger.getLogger(this.getClass().getPackage().getName());
+    static {
+        // set a system property such that Simple Logger will include timestamp
+        System.setProperty("org.slf4j.simpleLogger.showDateTime", "true");
+ 
+        // set a system property such that Simple Logger will include timestamp in the given format
+        System.setProperty("org.slf4j.simpleLogger.dateTimeFormat", "dd-MM-yy HH:mm:ss");
+ 
+        // set minimum log level for SLF4J Simple Logger at warn
+        System.setProperty("org.slf4j.simpleLogger.defaultLogLevel", "warn");
+ 
+        // configure SLF4J Simple Logger to redirect output to a file
+       // System.setProperty("org.slf4j.simpleLogger.logFile", "SLF4J-File.log");
+    }
+    private static org.slf4j.Logger fLogger = org.slf4j.LoggerFactory.getLogger("CbftRestCall");
+    
     
     public int get_request(String URI) throws ClientProtocolException, IOException
     {   
         HttpGet httpGet = new HttpGet(URI);
         HttpResponse httpResponse = httpClient.execute(httpGet);
+        String ResponseText = IOUtils.toString(httpResponse.getEntity().getContent());
         
-        fLogger.log(Level.INFO, "Get API:"+URI);
-        fLogger.log(Level.FINE, "\n =========== Return result ========\n"+ IOUtils.toString(httpResponse.getEntity().getContent())+"\n\n");
+        fLogger.debug("Get API:"+URI);
+        fLogger.debug("\n =========== Return result ========\n"+ ResponseText +"\n\n");
         
         int statusCode = httpResponse.getStatusLine().getStatusCode();
+        
+        if (statusCode !=200){
+            fLogger.warn("Error Calling Get API:"+URI);
+            fLogger.warn("\n =========== Return result ========\n"+ ResponseText+"\n\n");
+        }
         
         return statusCode;  
     }
@@ -46,12 +67,18 @@ public class CbftRestCall {
         }
         
         HttpResponse httpResponse = httpClient.execute(httpPost);
+        String ResponseText = IOUtils.toString(httpResponse.getEntity().getContent());
         
-        fLogger.log(Level.INFO, "Post API:"+URI);
-        fLogger.log(Level.FINE, "\n =========== Return result ========\n"+ IOUtils.toString(httpResponse.getEntity().getContent())+"\n\n");
+        fLogger.debug("Post API:"+URI);
+        fLogger.debug("\n =========== Return result ========\n"+ ResponseText +"\n\n");
         
         int statusCode = httpResponse.getStatusLine().getStatusCode();
  
+        if (statusCode !=200){
+            fLogger.warn("Error Calling Post API:"+URI);
+            fLogger.warn("\n =========== Return result ========\n"+ResponseText+"\n\n");
+        }
+        
         return statusCode;  
     }
         
@@ -59,12 +86,17 @@ public class CbftRestCall {
     {        
         HttpDelete httpDelete = new HttpDelete(URI);   
         HttpResponse httpResponse = httpClient.execute(httpDelete);
+        String ResponseText = IOUtils.toString(httpResponse.getEntity().getContent());
         
-        fLogger.log(Level.INFO, "Delete API:"+URI);
-        fLogger.log(Level.FINE, "\n =========== Return result ========\n"+ IOUtils.toString(httpResponse.getEntity().getContent())+"\n\n");
+        fLogger.debug("Delete API:"+URI);
+        fLogger.debug("\n =========== Return result ========\n"+ResponseText +"\n\n");
         
         int statusCode = httpResponse.getStatusLine().getStatusCode();
  
+        if (statusCode !=200){
+            fLogger.warn("Error Calling Delete API:"+URI);
+            fLogger.warn("\n =========== Return result ========\n"+ ResponseText +"\n\n");
+        }
         return statusCode;  
     }
     
@@ -72,12 +104,17 @@ public class CbftRestCall {
     {        
         HttpPut httpPut = new HttpPut(URI);   
         HttpResponse httpResponse = httpClient.execute(httpPut);
+        String ResponseText = IOUtils.toString(httpResponse.getEntity().getContent());
         
-        fLogger.log(Level.INFO, "Put API:"+URI);
-        fLogger.log(Level.FINE, "\n =========== Return result ========\n"+ IOUtils.toString(httpResponse.getEntity().getContent())+"\n\n");
+        fLogger.debug("Put API:"+URI);
+        fLogger.debug("\n =========== Return result ========\n"+ ResponseText +"\n\n");
         
         int statusCode = httpResponse.getStatusLine().getStatusCode();
  
+        if (statusCode !=200){
+            fLogger.warn("Error Calling Put API:"+URI);
+            fLogger.warn("\n =========== Return result ========\n"+ ResponseText +"\n\n");
+        }
         return statusCode;  
     }
 }

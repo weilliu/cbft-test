@@ -22,10 +22,8 @@ public class TestProperties {
         password = System.getProperty("password", "");
         adminName = System.getProperty("adminName", "Administrator");
         adminPassword = System.getProperty("adminPassword", "password");
-        queryEnabled = Boolean.parseBoolean(System.getProperty("queryEnabled", "false"));
-        
-        cbftNode = "localhost";
-        cbftPath ="./cbft-full.linux.amd64 -bindHttp=0.0.0.0:8095 -server=http://Administrator:password@172.23.107.174:8091";
+        queryEnabled = Boolean.parseBoolean(System.getProperty("queryEnabled", "false"));        
+        cbftNode = System.getProperty("cbfNode", "10.3.3.203"); 
     }
 
     /**

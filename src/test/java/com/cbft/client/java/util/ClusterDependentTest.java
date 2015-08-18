@@ -21,8 +21,6 @@ import com.couchbase.client.java.CouchbaseCluster;
 import com.couchbase.client.java.bucket.BucketType;
 import com.couchbase.client.java.cluster.ClusterManager;
 import com.couchbase.client.java.cluster.DefaultBucketSettings;
-import com.cbft.client.java.CbftServices;
-
 /**
  * Base test class for tests that need a working cluster reference.
  *
@@ -45,8 +43,6 @@ public class ClusterDependentTest {
     private static ClusterManager clusterManager;
     private static BucketManager bucketManager;
     private static Repository repository;
-    
-    private static CbftServices cbft;
 
     @BeforeClass
     public static void connect() throws Exception {
